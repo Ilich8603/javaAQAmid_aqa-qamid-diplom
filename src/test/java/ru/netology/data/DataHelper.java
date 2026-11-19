@@ -61,6 +61,11 @@ public final class DataHelper {
         return LocalDate.now().format(DateTimeFormatter.ofPattern("MM"));
     }
 
+    public static String getCurrentYear() {
+        int year = LocalDate.now().getYear();
+        return String.format("%02d", year % 100);
+    }
+
     public static String getValidYear() {
         int year = LocalDate.now().getYear() + 1;
         return String.format("%02d", year % 100);
@@ -161,6 +166,10 @@ public final class DataHelper {
         return "IVAN !@#";
     }
 
+    public static String getLowercaseOwner() {
+        return "ivan ivanov";
+    }
+
     public static String getSingleWordOwner() {
         return "IVAN";
     }
@@ -211,7 +220,7 @@ public final class DataHelper {
     public static class CardInfo {
         private String number;   // "1111 2222 3333 4444"
         private String month;    // "12"
-        private String year;     // "24"
+        private String year;     // "27"
         private String owner;    // "IVAN IVANOV"
         private String cvc;      // "123"
     }

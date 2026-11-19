@@ -76,4 +76,8 @@ public class PaymentPage {
     public void shouldShowCvcError(String text) {
         shouldShowErrorUnderField(cvcInput, text);
     }
+
+    public void shouldHaveEmptyCardNumber() {
+        cardNumberInput.shouldBe(Condition.empty);
+    }
 }
