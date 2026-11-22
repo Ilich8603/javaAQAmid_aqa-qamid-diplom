@@ -32,23 +32,23 @@ jobs:
           java -jar aqa-shop.jar &
           sleep 10 
 
-      # 💡 Выдаем права на выполнение gradlew
       - name: Make gradlew executable
         run: chmod +x gradlew
 
       - name: Run Tests
         run: ./gradlew test -Ddb.url=jdbc:mysql://localhost:3306/app
 
+      # 💡 Генерируем Allure-отчет напрямую через Allure CLI
       - name: Generate Allure Report
-        uses: simple-elf/allure-report-action@master
         if: always()
-        with:
-          allure_results: build/allure-results
+        run: |
+          npm install -g allure-commandline
+          allure generate build/allure-results -o build/allure-report
 
-      # 💡 Артефакт загрузится, даже если тесты упали (благодаря if: always)
+      # 💡 Загружаем HTML-отчет как артефакт
       - name: Archive Test Results
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: allure-report
-          path: build/reports/allure-report
+          path: build/allure-report
