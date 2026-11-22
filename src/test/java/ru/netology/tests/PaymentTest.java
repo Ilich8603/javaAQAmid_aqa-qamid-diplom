@@ -32,8 +32,8 @@ public class PaymentTest {
         PaymentPage paymentPage = mainPage.clickBuyButton();
         paymentPage.fillForm(validCard);
         paymentPage.clickContinue();
-
         paymentPage.shouldShowSuccessNotification();
+
         assertEquals("APPROVED", DBHelper.getLastPaymentStatus());
         assertEquals(4_500_000L, DBHelper.getLastPaymentAmount());
     }
@@ -44,7 +44,6 @@ public class PaymentTest {
         PaymentPage paymentPage = mainPage.clickBuyButton();
         paymentPage.fillForm(validCard);
         paymentPage.clickContinue();
-
         paymentPage.shouldShowSuccessNotification();
         assertEquals("APPROVED", DBHelper.getLastPaymentStatus());
     }
@@ -52,20 +51,18 @@ public class PaymentTest {
     @Test
     void shouldBuyTourOnCreditWithApprovedCard() {
         CardInfo validCard = DataHelper.getApprovedCardInfo();
-        PaymentPage paymentPage = mainPage.clickBuyButton();
+        PaymentPage paymentPage = mainPage.clickBuyCreditButton();
         paymentPage.fillForm(validCard);
         paymentPage.clickContinue();
-
         paymentPage.shouldShowSuccessNotification();
         assertEquals("APPROVED", DBHelper.getLastCreditStatus());
-        // В кредитной форме таблица payment_entity должна быть пуста
         assertEquals(0, DBHelper.getPaymentsCount());
     }
 
     @Test
     void shouldBuyTourOnCreditWithZeroCvc() {
         CardInfo validCard = DataHelper.getZeroCvcCardInfo();
-        PaymentPage paymentPage = mainPage.clickBuyButton();
+        PaymentPage paymentPage = mainPage.clickBuyCreditButton();
         paymentPage.fillForm(validCard);
         paymentPage.clickContinue();
 
@@ -87,7 +84,7 @@ public class PaymentTest {
     @Test
     void shouldDeclineCreditWithDeclinedCard() {
         CardInfo declinedCard = DataHelper.getDeclinedCardInfo();
-        PaymentPage paymentPage = mainPage.clickBuyButton();
+        PaymentPage paymentPage = mainPage.clickBuyCreditButton();
         paymentPage.fillForm(declinedCard);
         paymentPage.clickContinue();
 
