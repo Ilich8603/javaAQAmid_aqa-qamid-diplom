@@ -17,6 +17,7 @@
 *   [Отчет о тестировании](./docs/Report.md) 
 *   [Отчет по автоматизации](./docs/Summary.md) 
 *   [Скриншот Allure-отчета](./docs/allure_report.png)
+*   [Интерактивный Allure-отчет](./docs/allureReport/index.html)
 
 
 ## Требования для запуска
