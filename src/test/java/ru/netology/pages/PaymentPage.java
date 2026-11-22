@@ -4,7 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import ru.netology.data.DataHelper.CardInfo;
-
+import java.time.Duration;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -42,19 +42,19 @@ public class PaymentPage {
     }
 
     public void shouldShowSuccessNotification() {
-        successNotification.shouldBe(Condition.visible)
+        successNotification.shouldBe(Condition.visible, Duration.ofSeconds(15))
                 .shouldHave(Condition.text("Операция одобрена Банком."));
     }
 
     public void shouldShowErrorNotification() {
         errorNotification
-                .shouldBe(Condition.visible)
+                .shouldBe(Condition.visible, Duration.ofSeconds(15))
                 .shouldHave(Condition.text("Ошибка! Банк отказал в проведении операции."));
     }
 
     public void shouldShowErrorUnderField(SelenideElement inputField, String expectedErrorText) {
         inputField.parent().parent().find(".input__sub")
-                .shouldHave(Condition.text(expectedErrorText));
+                .shouldHave(Condition.text(expectedErrorText), Duration.ofSeconds(5));
     }
 
     public void shouldShowCardNumberError(String text) {

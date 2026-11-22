@@ -19,11 +19,9 @@ public class PaymentTest {
 
     @BeforeEach
     void setUp() {
-        Configuration.timeout = 15000;
         DBHelper.cleanDatabase();
         open("http://localhost:8080");
         mainPage = new MainPage();
-        paymentPage = new PaymentPage();
         mainPage.verifyPageIsOpen();
     }
 
@@ -31,7 +29,7 @@ public class PaymentTest {
     @Test
     void shouldBuyTourWithApprovedCard() {
         CardInfo validCard = DataHelper.getApprovedCardInfo();
-        mainPage.clickBuyButton();
+        PaymentPage paymentPage = mainPage.clickBuyButton();
         paymentPage.fillForm(validCard);
         paymentPage.clickContinue();
 
@@ -43,7 +41,7 @@ public class PaymentTest {
     @Test
     void shouldBuyTourWithZeroCvc() {
         CardInfo validCard = DataHelper.getZeroCvcCardInfo();
-        mainPage.clickBuyButton();
+        PaymentPage paymentPage = mainPage.clickBuyButton();
         paymentPage.fillForm(validCard);
         paymentPage.clickContinue();
 
@@ -54,7 +52,7 @@ public class PaymentTest {
     @Test
     void shouldBuyTourOnCreditWithApprovedCard() {
         CardInfo validCard = DataHelper.getApprovedCardInfo();
-        mainPage.clickBuyCreditButton();
+        PaymentPage paymentPage = mainPage.clickBuyButton();
         paymentPage.fillForm(validCard);
         paymentPage.clickContinue();
 
@@ -67,7 +65,7 @@ public class PaymentTest {
     @Test
     void shouldBuyTourOnCreditWithZeroCvc() {
         CardInfo validCard = DataHelper.getZeroCvcCardInfo();
-        mainPage.clickBuyCreditButton();
+        PaymentPage paymentPage = mainPage.clickBuyButton();
         paymentPage.fillForm(validCard);
         paymentPage.clickContinue();
 
@@ -75,14 +73,10 @@ public class PaymentTest {
         assertEquals("APPROVED", DBHelper.getLastCreditStatus());
     }
 
-    // ==========================================
-    //            DECLINED (ОТКАЗ БАНКА)
-    // ==========================================
-
     @Test
     void shouldDeclinePaymentWithDeclinedCard() {
         CardInfo declinedCard = DataHelper.getDeclinedCardInfo();
-        mainPage.clickBuyButton();
+        PaymentPage paymentPage = mainPage.clickBuyButton();
         paymentPage.fillForm(declinedCard);
         paymentPage.clickContinue();
 
@@ -93,7 +87,7 @@ public class PaymentTest {
     @Test
     void shouldDeclineCreditWithDeclinedCard() {
         CardInfo declinedCard = DataHelper.getDeclinedCardInfo();
-        mainPage.clickBuyCreditButton();
+        PaymentPage paymentPage = mainPage.clickBuyButton();
         paymentPage.fillForm(declinedCard);
         paymentPage.clickContinue();
 

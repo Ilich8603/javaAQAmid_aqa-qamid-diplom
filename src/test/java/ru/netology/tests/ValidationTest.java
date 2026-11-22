@@ -17,21 +17,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ValidationTest {
 
-    private MainPage mainPage;
     private PaymentPage paymentPage;
 
     @BeforeEach
     void setUp() {
-        Configuration.timeout = 15000;
-
         DBHelper.cleanDatabase();
         open("http://localhost:8080");
 
-        mainPage = new MainPage();
-        paymentPage = new PaymentPage();
+        MainPage mainPage = new MainPage();
         mainPage.verifyPageIsOpen();
-
-        mainPage.clickBuyButton();
+        paymentPage = mainPage.clickBuyButton();
     }
 
     private void submitForm(CardInfo card) {
@@ -92,9 +87,7 @@ public class ValidationTest {
         assertEquals(0, DBHelper.getPaymentsCount());
     }
 
-    // ==========================================
     //            ВАЛИДАЦИЯ НОМЕРА КАРТЫ
-    // ==========================================
 
     @Test
     void shouldShowErrorWhenCardNumberIsZero() {
@@ -280,9 +273,7 @@ public class ValidationTest {
         assertEquals("APPROVED", DBHelper.getLastPaymentStatus());
     }
 
-    // ==========================================
     //            ВАЛИДАЦИЯ CVC
-    // ==========================================
 
     @Test
     void shouldShowErrorWhenCvcIsOneNumber() {
