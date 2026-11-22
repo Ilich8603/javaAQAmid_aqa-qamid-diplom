@@ -43,10 +43,6 @@ jobs:
       - name: Run Tests
         run: ./gradlew test -Ddb.url=jdbc:mysql://127.0.0.1:3306/app -Dselenide.headless=true
 
-      - name: Show SUT Logs on Failure
-        if: failure()
-        run: cat sut.log
-
       - name: Generate Allure Report
         if: always()
         run: |

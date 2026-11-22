@@ -1,6 +1,6 @@
-# Курсовой проект по автоматизации тестирования сервиса "Путешествие дня"
-
 [![Java CI with Gradle and Docker](https://github.com/Ilich8603/javaAQAmid_aqa-qamid-diplom/actions/workflows/build.yml/badge.svg)](https://github.com/Ilich8603/javaAQAmid_aqa-qamid-diplom/actions/workflows/build.yml)
+
+# Курсовой проект по автоматизации тестирования сервиса "Путешествие дня"
 
 ## Описание проекта
 Данный проект представляет собой автоматизацию тестирования комплексного веб-сервиса, который предлагает купить тур двумя способами:
@@ -17,7 +17,7 @@
 *   [Отчет о тестировании](./docs/Report.md) 
 *   [Отчет по автоматизации](./docs/Summary.md) 
 *   [Скриншот Allure-отчета](./docs/allure_report.png)
-*   [Интерактивный Allure-отчет](./docs/allureReport/index.html)
+
 
 ## Требования для запуска
 Для запуска проекта на вашей машине должны быть установлены:

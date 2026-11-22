@@ -43,4 +43,3 @@
 ## 5. Приложение
 Сгенерированный интерактивный Allure-отчет доступен по ссылке:
 [Скриншот Allure-отчета](./allure_report.png)
-[Интерактивный Allure-отчет](./docs/allureReport/index.html)
